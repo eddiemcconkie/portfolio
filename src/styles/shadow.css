@@ -1,0 +1,38 @@
+.shadow {
+	box-shadow: var(--shadow-elevation);
+}
+
+.shadow.mint {
+	--shadow-color: 168deg 17% 57%;
+}
+.shadow.black {
+	--shadow-color: 211deg 5% 5%;
+}
+
+.shadow.low {
+	/* prettier-ignore */
+	--shadow-elevation:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    0.5px 0.8px 1.1px -1.2px hsl(var(--shadow-color) / 0.34),
+    1.3px 2px 2.7px -2.5px hsl(var(--shadow-color) / 0.34);
+}
+.shadow.med {
+	/* prettier-ignore */
+	--shadow-elevation:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+    1.1px 1.6px 2.2px -0.8px hsl(var(--shadow-color) / 0.36),
+    2.7px 4.1px 5.5px -1.7px hsl(var(--shadow-color) / 0.36),
+    6.6px 9.9px 13.4px -2.5px hsl(var(--shadow-color) / 0.36);
+}
+.shadow.high {
+	/* prettier-ignore */
+	--shadow-elevation:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    1.9px 2.9px 3.9px -0.4px hsl(var(--shadow-color) / 0.34),
+    3.6px 5.4px 7.3px -0.7px hsl(var(--shadow-color) / 0.34),
+    5.9px 8.8px 11.9px -1.1px hsl(var(--shadow-color) / 0.34),
+    9.4px 14.1px 19.1px -1.4px hsl(var(--shadow-color) / 0.34),
+    14.7px 22.1px 29.9px -1.8px hsl(var(--shadow-color) / 0.34),
+    22.3px 33.6px 45.4px -2.1px hsl(var(--shadow-color) / 0.34),
+    32.8px 49.5px 66.8px -2.5px hsl(var(--shadow-color) / 0.34);
+}

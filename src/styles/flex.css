@@ -1,0 +1,22 @@
+.flex {
+	display: flex;
+}
+.flex.wrap {
+	flex-wrap: wrap;
+}
+.flex.column {
+	flex-direction: column;
+}
+.flex.justify-end {
+	justify-content: flex-end;
+}
+.flex.align-end {
+	align-items: flex-end;
+}
+.flex.space-between {
+	justify-content: space-between;
+}
+
+.flex.gap-3xl {
+	gap: var(--space-3xl);
+}
