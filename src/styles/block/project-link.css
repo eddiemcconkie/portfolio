@@ -1,0 +1,7 @@
+.project-link-group {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 320px));
+	grid-gap: var(--space-m-l);
+	padding: var(--space-xs-s);
+}

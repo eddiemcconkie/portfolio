@@ -1,68 +1,166 @@
-<script>
+<script lang="ts">
+	import { quintOut } from 'svelte/easing';
+	import { fly, scale } from 'svelte/transition';
+	import { onMount } from 'svelte';
 	import pic from './pic-500x500.jpg';
+	import PuzzleDialog from './PuzzleDialog.svelte';
+
+	let mounted = false;
+	onMount(() => {
+		mounted = true;
+	});
+
+	let showGame: () => void;
+
+	let easing = quintOut;
 </script>
 
 <div class="layout">
 	<header>
-		<!-- <div class="header-main | flex wrap space-between gap-3xl"> -->
-		<div class="header-main | container | flex wrap space-between gap-3xl" data-width="wide">
-			<div class="font-white">
+		<div
+			class="header-content | container | flex wrap justify-center align-center"
+			data-width="wide"
+		>
+			<div class="header-text | font-white">
 				<h1 class="step-4">EDDIE McCONKIE</h1>
 				<p class="font-bold step-1">software engineer</p>
 			</div>
-			<div>
-				<img src={pic} alt="Eddie McConkie" width="300" height="300" />
+			<div class="img-container | stack">
+				<!-- <div class="img-container | stack"> -->
+				<img src={pic} alt="Eddie McConkie" width="300" draggable="false" />
+				{#if mounted}
+					<button
+						class="step-1"
+						data-color="yellow"
+						on:click={showGame}
+						in:scale={{ delay: 300, duration: 800, easing }}>click!</button
+					>
+					<span class="prompt" in:fly={{ delay: 300, duration: 800, y: -50, easing }}>
+						up for a challenge ?
+					</span>
+				{/if}
 			</div>
 		</div>
 	</header>
-	<div class="slide-out | flex justify-end align-end">
-		<p class="font-white font-normal step-0">
-			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque consectetur, itaque autem
-			pariatur libero provident laboriosam nobis quia aliquam earum doloremque neque ad inventore
-			nemo iste! Inventore aut sed nemo provident illo, rem ducimus blanditiis voluptas, temporibus
-			asperiores, ex esse error quae ad alias facilis repellat labore earum assumenda incidunt!
-		</p>
+	<div class="slide-out">
+		<div class="container | flex justify-end align-end" data-width="wide">
+			<div class="font-white font-normal step-0">
+				<p class="font-medium step-1">Hey, I'm Eddie!</p>
+				<p>
+					I'm a full-stack software engineer, and I love building apps, especially when they can
+					help boost productivity! Keep scrolling and check out some of the stuff I've worked on!
+				</p>
+			</div>
+		</div>
 	</div>
+	<div class="slide-out-filler" />
 </div>
+
+<PuzzleDialog bind:showGame />
 
 <style>
 	.layout {
 		position: relative;
 		display: grid;
-		grid-template-rows: repeat(2, auto) 60vh;
+		grid-template-rows: repeat(2, auto);
+	}
+	.layout > * {
+		grid-column: 1 / -1;
 	}
 	header {
-		grid-area: 1 / 1 / 2 / 2;
+		grid-row: 1 / 2;
 		background-color: var(--green);
 		padding-block-end: 10vw;
 		clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
 	}
-	.header-main {
-		/* padding: var(--space-3xl); */
+	/* Background texture */
+	header::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-blend-mode: multiply;
+		background-color: var(--green);
+		background-image: url('../assets/header-texture-autox300.jpg');
+		/* background-image: url('../assets/header-texture.jpg'); */
+		filter: blur(8px);
+		scale: 1.1; /* So edges aren't blurry */
+		z-index: -1;
+	}
+	.header-content {
+		margin-block-end: var(--space-l-3xs);
 		padding: var(--space-l-3xl);
+		gap: var(--space-l-3xl) var(--space-3xl);
+	}
+	.header-text {
+		flex: 1000 0 0;
 	}
 	h1 {
-		max-width: min-content;
 		text-shadow: 0 var(--space-3xs-2xs) var(--black);
+	}
+	.img-container {
+		--img-br: var(--space-m);
+		--easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		max-width: 100%;
+		width: 300px;
+		rotate: 5deg;
+		border-radius: var(--img-br);
+		outline-color: transparent;
+		outline-width: var(--space-3xs);
+		outline-style: solid;
+		outline-offset: 0;
+		transition: outline-offset 400ms var(--easing);
+	}
+	.img-container:hover {
+		outline-color: var(--yellow);
+		outline-offset: var(--space-xs);
 	}
 	img {
 		border: var(--space-2xs) solid var(--black);
-		border-radius: var(--space-m);
-		rotate: 5deg;
+		border-radius: var(--img-br);
+		width: 100%;
+		aspect-ratio: 1 / 1;
+	}
+	.img-container > button {
+		justify-self: center;
+		align-self: end;
+		margin-block-end: var(--space-s);
+		border: var(--space-3xs) solid var(--black);
+		font-weight: var(--font-bold);
+		padding-inline: var(--space-xl);
+		padding-block-start: var(--space-3xs);
+	}
+	.img-container > .prompt {
+		justify-self: center;
+		align-self: end;
+		font-weight: var(--font-medium);
+		translate: 0 var(--space-l);
+		transition: translate 400ms var(--easing);
+		pointer-events: none;
+		/* z-index: -1; */
+	}
+	.img-container:hover > .prompt {
+		translate: 0 var(--space-xl);
 	}
 	.slide-out {
-		grid-area: 1 / 1 / 2 / 2;
-		position: sticky;
-		z-index: -1;
+		grid-row: 2 / 3;
 		top: 0;
 		background-color: var(--black);
-		/* padding: var(--space-3xl); */
-		padding: var(--space-l-3xl);
+		padding-inline: var(--space-s-3xl);
+		padding-block-end: calc(10vw);
 		clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 80% 100%, 0 calc(100% - 10vw));
 	}
-	.slide-out > p {
+	/* .slide-out > p { */
+	.slide-out p {
 		width: 100%;
 		max-width: 40ch;
-		margin-block-end: var(--space-l);
+		margin-block: var(--space-l-3xs);
+	}
+	.slide-out-filler {
+		grid-row: 1 / 2;
+		background-color: var(--black);
 	}
 </style>

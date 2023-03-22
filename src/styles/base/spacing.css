@@ -1,4 +1,4 @@
-/* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|8,s-l|l-3xl&g=s,l,xl,12 */
+/* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|8,s-l|l-3xl|l-3xs|s-3xl&g=s,l,xl,12 */
 
 :root {
 	--space-3xs: clamp(0.31rem, calc(0.31rem + 0vw), 0.31rem);
@@ -26,61 +26,6 @@
 	/* Custom pairs */
 	--space-s-l: clamp(1.13rem, calc(0.65rem + 2.39vw), 2.5rem);
 	--space-l-3xl: clamp(2.25rem, calc(0.42rem + 9.13vw), 7.5rem);
-}
-
-/* UTILITY CLASSES */
-
-.m-3xs {
-	margin: var(--space-3xs);
-}
-.m-2xs {
-	margin: var(--space-2xs);
-}
-.m-xs {
-	margin: var(--space-xs);
-}
-.m-s {
-	margin: var(--space-s);
-}
-.m-m {
-	margin: var(--space-m);
-}
-.m-l {
-	margin: var(--space-l);
-}
-.m-xl {
-	margin: var(--space-xl);
-}
-.m-2xl {
-	margin: var(--space-2xl);
-}
-.m-3xl {
-	margin: var(--space-3xl);
-}
-.p-3xs {
-	padding: var(--space-3xs);
-}
-.p-2xs {
-	padding: var(--space-2xs);
-}
-.p-xs {
-	padding: var(--space-xs);
-}
-.p-s {
-	padding: var(--space-s);
-}
-.p-m {
-	padding: var(--space-m);
-}
-.p-l {
-	padding: var(--space-l);
-}
-.p-xl {
-	padding: var(--space-xl);
-}
-.p-2xl {
-	padding: var(--space-2xl);
-}
-.p-3xl {
-	padding: var(--space-3xl);
+	--space-l-3xs: clamp(0.31rem, calc(2.92rem + -3.37vw), 2.25rem);
+	--space-s-3xl: clamp(1.13rem, calc(-1.09rem + 11.09vw), 7.5rem);
 }

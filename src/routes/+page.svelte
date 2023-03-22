@@ -8,7 +8,6 @@
 	import { links } from './project-links';
 	import ProjectLink from './ProjectLink.svelte';
 
-	let scrollY: number;
 	let innerHeight: number;
 	let boxes: HTMLDivElement;
 	let distanceFromCenter = 0;
@@ -23,14 +22,17 @@
 	});
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight on:scroll={calculateBoxesDistanceFromCenter} />
+<svelte:head>
+	<title>Eddie McConkie - Portfolio</title>
+</svelte:head>
+<svelte:window bind:innerHeight on:scroll={calculateBoxesDistanceFromCenter} />
 
 <Header />
 
 <main>
-	<section aria-labelledby="projects">
-		<h2 id="projects" class="step-2 font-medium">Projects</h2>
-		<div class="project-links">
+	<section aria-labelledby="projects" class="flow">
+		<h2 id="projects" class="step-3 font-medium">projects</h2>
+		<div class="project-link-group">
 			{#each links as link, i}
 				<ProjectLink slug={link.slug} green={i % 2 == 1}>
 					<svelte:fragment slot="title">
@@ -45,33 +47,23 @@
 	</section>
 
 	<section aria-labelledby="about" class="container">
-		<div>
-			<h2 id="about" class="step-2 font-medium">A meaningful subtitle</h2>
+		<div class="flow">
+			<h2 id="about" class="step-3 font-medium">a little about me</h2>
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quod fuga non nisi delectus
-				praesentium numquam exercitationem reiciendis perferendis nostrum atque eligendi
-				necessitatibus odio eum possimus, ipsa dolor veniam. Dolor autem sequi corrupti distinctio
-				voluptatum consequatur dolorem, maiores quibusdam consequuntur, quos eos vero quis facilis
-				iusto repellendus error itaque esse veritatis aut rem exercitationem qui, beatae nesciunt?
-				Sequi, atque sint.
+				When I was a kid, my brother and I had this program on our computer called GameMaker. It was
+				kind of like Scratch, but for big kids, that let you use different building blocks to create
+				the logic for your game. And we built so many games! I remember creating my own "Legend of
+				Zelda" since that was my favorite video game (still is, btw). I didn't even think of it as
+				programming at the time, I just loved being able to build something cool and share it with
+				people!
 			</p>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis obcaecati eveniet recusandae
-				animi perferendis odit aut ad adipisci fugiat quaerat. Maxime, mollitia deleniti? Provident
-				minus doloribus quibusdam quisquam dolore, earum recusandae reiciendis delectus odit vitae
-				rerum, quasi ab distinctio, adipisci autem perspiciatis eum. Sint a quas autem, maxime
-				facere delectus magnam voluptatem aliquam accusamus pariatur dignissimos excepturi iste non
-				incidunt nemo, cumque voluptatum quasi odit ea illo assumenda sed? Repudiandae unde illo
-				iste inventore non quas voluptate vel necessitatibus animi.
+				It wasn't long before I got into real coding. In middle school I discovered an iPad app
+				called Codea that allowed you to program games and simulations with Lua. I fell in love with
+				programming all over again! I would build games and play them at lunch with my friends, and
+				I was able to use my coding skills to help with other projects in school.
 			</p>
-			<p>
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa amet iure nam, ex id
-				recusandae voluptatem repellendus nemo, ratione ad sint veniam repudiandae! Debitis earum
-				totam labore doloremque culpa, perferendis natus laboriosam repellat ea laborum, enim neque
-				nobis eveniet fuga. Tenetur iste, ratione incidunt eaque cum unde eum delectus fugiat
-				maiores tempore nihil ab vero praesentium ut maxime cumque minus sint beatae itaque amet
-				molestiae nisi voluptates. Nihil, quia sint!
-			</p>
+			<p>Though reluctant at first, I grew to love web development!</p>
 		</div>
 
 		<div class="boxes" bind:this={boxes}>
@@ -88,37 +80,43 @@
 	:global(body) {
 		background-color: var(--mint);
 	}
-	.project-links {
-		display: grid;
-		justify-content: center;
-		/* grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); */
-		grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 320px));
-		grid-gap: var(--space-m-l);
-		padding: var(--space-xs-s);
+	section[aria-labelledby='projects'] {
+		margin-block-start: var(--space-2xl-3xl);
+	}
+	section[aria-labelledby='projects'] h2 {
+		text-align: center;
 	}
 
 	section[aria-labelledby='about'] {
 		display: grid;
-		grid-template-columns: 1fr 200px;
+		grid-template-columns: 1fr;
 		grid-gap: var(--space-m-l);
 		padding: var(--space-xs-s);
+		margin-block: var(--space-2xl-3xl);
 	}
 
 	.boxes {
-		position: relative;
-	}
-	.boxes::after {
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		inset: 0;
 		--fade: 100px;
-		background: linear-gradient(
+		--mask-gradient: linear-gradient(
 			0deg,
-			var(--mint) 0,
-			transparent var(--fade),
-			transparent calc(100% - var(--fade)),
-			var(--mint) 100%
+			transparent 0,
+			black var(--fade),
+			black calc(100% - var(--fade)),
+			transparent 100%
 		);
+		display: none;
+		position: relative;
+		-webkit-mask-image: var(--mask-gradient);
+		mask-image: var(--mask-gradient);
+		mask-mode: alpha;
+	}
+
+	@media (min-width: 45rem) {
+		section[aria-labelledby='about'] {
+			grid-template-columns: 1fr 25%;
+		}
+		.boxes {
+			display: block;
+		}
 	}
 </style>

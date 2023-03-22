@@ -1,0 +1,23 @@
+.flow > * + * {
+	margin-block-start: var(--flow-space, 1em);
+}
+
+.container {
+	--w: 60rem;
+	max-width: var(--w);
+	padding-inline: var(--space-s-l);
+	margin-inline: auto;
+}
+.container[data-width='wide'] {
+	--w: 80rem;
+}
+.container[data-width='thin'] {
+	--w: 40rem;
+}
+
+.stack {
+	display: grid;
+}
+.stack > * {
+	grid-area: 1 / 1;
+}

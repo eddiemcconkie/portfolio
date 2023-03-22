@@ -1,10 +1,5 @@
-@layer base, composition, utility, block;
-@import './modern-css-reset.css' layer(base);
-@import './colors.css' layer(base);
-@import './font.css' layer(base);
-@import './typography.css' layer(base);
-@import './spacing.css' layer(base);
-@import './elements.css' layer(base);
-@import './composition.css' layer(composition);
-@import './shadow.css' layer(utility);
-@import './flex.css' layer(utility);
+@layer base, composition, block, utility;
+@import './base' layer(base);
+@import './composition' layer(composition);
+@import './block' layer(block);
+@import './utility' layer(utility);

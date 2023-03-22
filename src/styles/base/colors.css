@@ -7,9 +7,3 @@
 
 	color: var(--black);
 }
-
-/* UTILITY CLASSES */
-
-.font-white {
-	color: white;
-}

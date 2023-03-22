@@ -10,6 +10,12 @@
 .flex.justify-end {
 	justify-content: flex-end;
 }
+.flex.justify-center {
+	justify-content: center;
+}
+.flex.align-center {
+	align-items: center;
+}
 .flex.align-end {
 	align-items: flex-end;
 }
@@ -19,4 +25,8 @@
 
 .flex.gap-3xl {
 	gap: var(--space-3xl);
+}
+
+.flex-noshrink {
+	flex-shrink: 0;
 }

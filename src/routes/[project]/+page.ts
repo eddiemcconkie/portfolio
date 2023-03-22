@@ -1,9 +1,12 @@
 import { error } from '@sveltejs/kit';
-import type { PageLoad } from './$types';
+import { links } from '../project-links';
 import { projects } from './projects';
 
-export const load = (async ({ params }) => {
+export const load = async ({ params }) => {
 	const project = projects[params.project];
 	if (!project) throw error(404, 'Page not found');
-	return { project };
-}) satisfies PageLoad;
+
+	const otherProjects = links.filter((link) => link.slug !== params.project);
+
+	return { project, otherProjects };
+};

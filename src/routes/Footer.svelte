@@ -1,25 +1,81 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
+	import Spinner from '../assets/icons/Spinner.svelte';
+	import GitHub from '../assets/icons/GitHub.svelte';
+	import Linkedin from '../assets/icons/Linkedin.svelte';
+
+	let sendingEmail = false;
 </script>
 
 <footer>
 	<div class="container">
 		<h2 class="step-2 font-bold">let's chat!</h2>
-		<form method="post">
-			<label for="name" class="step--1 font-bold">
-				name
-				<input type="text" id="name" name="name" required />
-			</label>
-			<label for="email" class="step--1 font-bold">
-				email
-				<input type="text" id="email" name="email" required />
-			</label>
-			<label for="message" class="step--1 font-bold">
-				write something, if you like
-				<textarea name="message" id="message" />
-			</label>
-			<button type="submit" data-color="yellow">send it</button>
-		</form>
-		<div class="social-links" />
+		<div class="footer-main-content">
+			<!-- action="/?redirectTo={$page.url.pathname}" -->
+			<form
+				method="POST"
+				action="/"
+				use:enhance={() => {
+					sendingEmail = true;
+					return async ({ update }) => {
+						await update();
+						sendingEmail = false;
+					};
+				}}
+			>
+				<label for="name">
+					<span class="step--1 font-bold">name <span class="required">*</span></span>
+					<input type="text" id="name" name="name" required value={$page.form?.name ?? ''} />
+				</label>
+				<label for="email">
+					<span class="step--1 font-bold">
+						email <span class="required">*</span>
+						{#if $page.form?.invalidEmail}
+							<em class="invalid">invalid email</em>
+						{/if}
+					</span>
+					<input type="email" id="email" name="email" required value={$page.form?.email ?? ''} />
+				</label>
+				<label for="message">
+					<span class="step--1 font-bold">write something, if you like</span>
+					<textarea name="message" id="message" value={$page.form?.message ?? ''} />
+				</label>
+				<button type="submit" class="font-medium" data-color="yellow" disabled={sendingEmail}>
+					{#if sendingEmail}
+						sending
+						<Spinner />
+					{:else}
+						send it
+					{/if}
+				</button>
+				{#if $page.form?.success}
+					<p>thanks! I'll get back to you soon</p>
+				{:else if $page.form?.rejected}
+					<p>sorry, something went wrong...</p>
+				{/if}
+			</form>
+			<div class="social-links">
+				<a
+					href="https://github.com/eddiemcconkie?tab=repositories"
+					aria-label="GitHub repos"
+					target="_blank"
+					rel="noreferrer"
+					class="font-white step-4"
+				>
+					<GitHub />
+				</a>
+				<a
+					href="https://www.linkedin.com/in/edward-mcconkie/"
+					aria-label="Linkedin profile"
+					target="_blank"
+					rel="noreferrer"
+					class="font-white step-4"
+				>
+					<Linkedin />
+				</a>
+			</div>
+		</div>
 	</div>
 </footer>
 
@@ -33,18 +89,34 @@
 		/* clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 80% 100%, 0 calc(100% - 10vw)); */
 		clip-path: polygon(0 2vw, 20% 0, 100% 10vw, 100% 100%, 0 100%);
 	}
-	footer > .container {
-		display: grid;
-		grid-template-columns: 1fr auto;
+	footer > * > * {
+		max-width: 25rem;
+		margin-inline: auto;
 	}
 	h2 {
-		grid-column: 1 / -1;
+		/* grid-column: 1 / -1; */
+		/* flex: 1 0 auto; */
 		margin-block-end: var(--space-m);
 	}
+	.footer-main-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-l);
+	}
 	form {
+		flex: 1 0 auto;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-s) var(--space-l);
+	}
+	.social-links {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		gap: var(--space-xs);
+	}
+	.social-links > a {
+		display: flex;
 	}
 	textarea {
 		resize: none;
@@ -55,12 +127,28 @@
 		flex-direction: column;
 		gap: var(--space-3xs);
 	}
+	.required {
+		color: var(--yellow);
+		font-weight: inherit;
+	}
+	.invalid {
+		color: var(--yellow);
+	}
 
-	@media (min-width: 40rem) {
+	@media (min-width: 45rem) {
+		footer > * > * {
+			max-width: 100%;
+		}
 		form {
 			display: grid;
 			grid-template-columns: 2fr 3fr;
 			grid-template-rows: 1fr 1fr 1fr;
+		}
+		.social-links {
+			flex-direction: column;
+		}
+		.footer-main-content {
+			flex-direction: row;
 		}
 		label[for='message'] {
 			grid-row: 1 / -1;
