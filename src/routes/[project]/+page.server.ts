@@ -1,4 +1,4 @@
-import { contactAction } from './contact-action';
+import { contactAction } from '../contact-action';
 
 export const actions = {
 	default: contactAction,

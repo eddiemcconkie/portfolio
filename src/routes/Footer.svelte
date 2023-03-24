@@ -12,10 +12,8 @@
 	<div class="container">
 		<h2 class="step-2 font-bold">let's chat!</h2>
 		<div class="footer-main-content">
-			<!-- action="/?redirectTo={$page.url.pathname}" -->
 			<form
 				method="POST"
-				action="/"
 				use:enhance={() => {
 					sendingEmail = true;
 					return async ({ update }) => {
@@ -85,8 +83,6 @@
 		color: white;
 		padding-block-start: 15vw;
 		padding-block-end: 10vw;
-		/* padding-block-end: var(--space-3xl); */
-		/* clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 80% 100%, 0 calc(100% - 10vw)); */
 		clip-path: polygon(0 2vw, 20% 0, 100% 10vw, 100% 100%, 0 100%);
 	}
 	footer > * > * {
@@ -94,8 +90,6 @@
 		margin-inline: auto;
 	}
 	h2 {
-		/* grid-column: 1 / -1; */
-		/* flex: 1 0 auto; */
 		margin-block-end: var(--space-m);
 	}
 	.footer-main-content {
@@ -112,7 +106,7 @@
 	.social-links {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-end;
+		justify-content: center;
 		gap: var(--space-xs);
 	}
 	.social-links > a {
