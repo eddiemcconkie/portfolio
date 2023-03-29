@@ -21,9 +21,6 @@
 	</p>
 </section>
 
-<!-- <Button>hey</Button> -->
-<!-- <Button href="/urmom">hey</Button> -->
-
 <div class="flow">
 	{#if data.project.screenshot}
 		<div class="screenshot | container stack">
@@ -35,6 +32,7 @@
 					class="step-1 font-bold"
 					href="https://code-journal.vercel.app"
 					external
+					--border-radius="var(--space-xs)"
 					--padding-inline="var(--space-l-xl)"
 				>
 					try it out!

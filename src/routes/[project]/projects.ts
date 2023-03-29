@@ -11,7 +11,7 @@ export const projects: Record<string, Project> = {
 	'code-journal': {
 		title: 'Code Journal',
 		headerText: "because I couldn't find a note-taking app that I liked",
-		screenshot: '/screenshot-code-journal.jpg',
+		screenshot: '/screenshot-code-journal.webp',
 		githubLink: 'https://github.com/eddiemcconkie/code-journal',
 		demoLink: 'https://code-journal.vercel.app',
 		bodyText: [

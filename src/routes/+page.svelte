@@ -17,8 +17,11 @@
 		distanceFromCenter = ((top + bottom) / 2 - innerHeight / 2) / height;
 	};
 
+	let mounted = false;
+
 	onMount(() => {
 		calculateBoxesDistanceFromCenter();
+		mounted = true;
 	});
 </script>
 
@@ -67,9 +70,11 @@
 		</div>
 
 		<div class="boxes" bind:this={boxes}>
-			<Canvas>
-				<Boxes {distanceFromCenter} />
-			</Canvas>
+			{#if mounted}
+				<Canvas>
+					<Boxes {distanceFromCenter} />
+				</Canvas>
+			{/if}
 		</div>
 	</section>
 </main>
