@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte';
 	import Boxes from './Boxes.svelte';
 	import Footer from './Footer.svelte';
-
 	import Header from './Header.svelte';
 	import { links } from './project-links';
 	import ProjectLink from './ProjectLink.svelte';
@@ -19,9 +18,11 @@
 
 	let mounted = false;
 
-	onMount(() => {
-		calculateBoxesDistanceFromCenter();
-		mounted = true;
+	onMount(async () => {
+		setTimeout(() => {
+			calculateBoxesDistanceFromCenter();
+			mounted = true;
+		}, 1);
 	});
 </script>
 
