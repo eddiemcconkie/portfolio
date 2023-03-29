@@ -132,10 +132,7 @@
 		justify-self: center;
 		align-self: end;
 		margin-block-end: var(--space-s);
-		/* border: var(--space-3xs) solid var(--black); */
 		font-weight: var(--font-bold);
-		/* padding-inline: var(--space-xl); */
-		/* padding-block-start: var(--space-3xs); */
 	}
 	.img-container > .prompt {
 		justify-self: center;
@@ -144,7 +141,6 @@
 		translate: 0 var(--space-l);
 		transition: translate 400ms var(--easing);
 		pointer-events: none;
-		/* z-index: -1; */
 	}
 	.img-container:hover > .prompt {
 		translate: 0 var(--space-xl);
@@ -157,7 +153,6 @@
 		padding-block-end: calc(10vw);
 		clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 80% 100%, 0 calc(100% - 10vw));
 	}
-	/* .slide-out > p { */
 	.slide-out p {
 		width: 100%;
 		max-width: 40ch;

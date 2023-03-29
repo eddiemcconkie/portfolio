@@ -51,7 +51,6 @@
 			border: 0;
 			border-radius: var(--border-radius, 0.75em);
 			padding-block: 0.2em;
-			/* padding-inline: 2.5em; */
 			padding-inline: var(--padding-inline, 2.5em);
 			line-height: 1.5;
 			cursor: pointer;

@@ -11,7 +11,6 @@
 </svelte:head>
 
 <header class="header-bar | font-white">
-	<!-- <h1 class="step-1">EDDIE McCONKIE</h1> -->
 	<a href="/" class="step-1 font-medium">EDDIE McCONKIE</a>
 </header>
 <section class="header-main | flow | font-white flex column align-center" aria-labelledby="intro">
@@ -25,7 +24,6 @@
 	{#if data.project.screenshot}
 		<div class="screenshot | container stack">
 			<img src={data.project.screenshot} alt="" />
-			<!-- <button class="demo-button | step-1 font-bold" data-color="yellow">try it out!</button> -->
 			<div class="demo-button">
 				<Button
 					border
@@ -127,10 +125,6 @@
 		justify-self: end;
 		margin-block-end: var(--space-s);
 		margin-inline: var(--space-s);
-		/* border: var(--space-3xs) solid var(--black); */
-		/* font-weight: var(--font-bold); */
-		/* padding-inline: var(--space-xl); */
-		/* padding-block-start: var(--space-3xs); */
 	}
 
 	section[aria-labelledby='projects'] {

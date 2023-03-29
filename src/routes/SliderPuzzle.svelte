@@ -15,14 +15,10 @@
 
 	let shuffling = true;
 	let complete = false;
-	// $: console.log(shuffling, complete);
 	const dispatch = createEventDispatcher();
 	$: if (complete) dispatch('complete');
 
-	// let shuffleSpeed = 60; //ms
 	let shuffleSpeed = 30; //ms
-	// let shuffleSpeed = 1000 //ms
-	// $: swapSpeed = complete ? 1000 : 100; //ms
 	$: swapSpeed = complete ? 1000 : 100; //ms
 
 	const xyFromIndex = (index: number) => ({
@@ -38,7 +34,6 @@
 
 	/**
 	 * Get the indices of the adjacent squares on the board
-	 * @param index
 	 */
 	const getAdjacent = (index: number) => {
 		const { x: currentX, y: currentY } = xyFromIndex(index);
@@ -87,7 +82,6 @@
 				shuffling = false;
 				clearInterval(interval);
 			}
-			// }, shuffleSpeed * 1.5)
 		}, shuffleSpeed * 3);
 	};
 	setTimeout(shuffle, 1000);
@@ -95,7 +89,6 @@
 	/**
 	 * If possible, move the clicked piece into the empty space,
 	 * and end the game when the puzzle is complete
-	 * @param index
 	 */
 	const handleClick = (index: number) => {
 		if (shuffling || complete) return;
@@ -139,9 +132,6 @@
 	</div>
 </div>
 
-<!-- <div class="reference">
-	<img src={pic} alt="" />
-</div> -->
 <style>
 	*,
 	*::before,
@@ -151,7 +141,6 @@
 
 	.backdrop {
 		--h: 20;
-		/* --s: 100%; */
 		--s: 0%;
 		--l: 15%;
 		--bg-color: var(--h) var(--s) var(--l);
@@ -168,7 +157,6 @@
 		grid-template-columns: repeat(var(--size), 1fr);
 		--l: 30%;
 		--bg-color: var(--h) var(--s) var(--l);
-		/* filter: drop-shadow(0 0 3px hsl(var(--bg-color))); */
 	}
 
 	.piece {
@@ -188,10 +176,8 @@
 	.piece > img {
 		max-width: 100%;
 		display: block;
-		/* transform-origin: top left; */
 		transform-origin: center;
 		translate: calc(calc(var(--x) - 1) * -100%) calc(calc(var(--y) - 1) * -100%);
-		/* scale: var(--size); */
 		scale: 3.5;
 	}
 	.piece.empty > img {

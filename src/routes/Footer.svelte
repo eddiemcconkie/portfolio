@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-	import Spinner from '$lib/icons/Spinner.svelte';
+	import Button from '$lib/Button.svelte';
 	import GitHub from '$lib/icons/GitHub.svelte';
 	import Linkedin from '$lib/icons/Linkedin.svelte';
-	import Button from '$lib/Button.svelte';
+	import Spinner from '$lib/icons/Spinner.svelte';
 
 	let sendingEmail = false;
 </script>
@@ -119,7 +119,6 @@
 	.social-links {
 		display: flex;
 		flex-direction: row;
-		/* justify-content: center; */
 		justify-content: flex-end;
 		gap: var(--space-xs);
 		margin-block-start: var(--space-m);
