@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import { backOut, linear } from 'svelte/easing';
 
@@ -15,6 +16,8 @@
 	let shuffling = true;
 	let complete = false;
 	// $: console.log(shuffling, complete);
+	const dispatch = createEventDispatcher();
+	$: if (complete) dispatch('complete');
 
 	// let shuffleSpeed = 60; //ms
 	let shuffleSpeed = 30; //ms

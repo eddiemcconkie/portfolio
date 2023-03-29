@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { fly, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import SliderPuzzle from './SliderPuzzle.svelte';
+	import { confetti } from '@neoconfetti/svelte';
 
+	import SliderPuzzle from './SliderPuzzle.svelte';
 	import pic from './pic-500x500.jpg';
 	import Close from '$lib/icons/Close.svelte';
 	import Button from '$lib/Button.svelte';
@@ -16,6 +17,8 @@
 
 	// Binding to the "open" attribute on dialogs isn't currently supported
 	let open = false;
+
+	let complete = false;
 </script>
 
 <dialog
@@ -27,15 +30,20 @@
 	}}
 >
 	{#if open}
-		<div transition:fly={{ duration: 400, y: 200, easing: quintOut, opacity: 0.5 }}>
-			<div class="flex justify-end">
-				<Button size="compact" class="step-0 font-bold" on:click={() => dialog.close()}>
-					<Close />
-				</Button>
+		<div transition:fly={{ duration: 400, y: 200, easing: quintOut, opacity: 0.5 }} class="stack">
+			<div>
+				<div class="flex justify-end">
+					<Button size="compact" class="step-0 font-bold" on:click={() => dialog.close()}>
+						<Close />
+					</Button>
+				</div>
+				<div class="puzzle-wrapper | flex justify-center">
+					<SliderPuzzle on:complete={() => (complete = true)} {pic} />
+				</div>
 			</div>
-			<div class="puzzle-wrapper | flex justify-center">
-				<SliderPuzzle {pic} />
-			</div>
+			{#if complete}
+				<div use:confetti={{ colors: ['var(--green)', 'var(--yellow)', 'white'] }} />
+			{/if}
 		</div>
 	{/if}
 </dialog>
