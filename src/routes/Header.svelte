@@ -1,10 +1,10 @@
 <script lang="ts">
+	import Button from '$lib/Button.svelte';
+	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-	import { onMount } from 'svelte';
 	import pic from './pic-400x400.webp';
 	import PuzzleDialog from './PuzzleDialog.svelte';
-	import Button from '$lib/Button.svelte';
 
 	let mounted = false;
 	onMount(() => {

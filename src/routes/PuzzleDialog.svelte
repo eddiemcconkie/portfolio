@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	import { confetti } from '@neoconfetti/svelte';
-
-	import SliderPuzzle from './SliderPuzzle.svelte';
-	import pic from './pic-400x400.webp';
-	import Close from '$lib/icons/Close.svelte';
 	import Button from '$lib/Button.svelte';
+	import Close from '$lib/icons/Close.svelte';
+	import { confetti } from '@neoconfetti/svelte';
+	import { quintOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
+	import pic from './pic-400x400.webp';
+	import SliderPuzzle from './SliderPuzzle.svelte';
 
 	let dialog: HTMLDialogElement;
 
