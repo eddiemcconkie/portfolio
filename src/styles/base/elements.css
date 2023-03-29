@@ -7,36 +7,11 @@
 }
 
 input,
-textarea,
-button:not(.plain) {
+textarea {
 	border: 0;
 	border-radius: var(--space-2xs);
 	line-height: 1.5;
-	/* font-weight: var(--font-normal); */
 	padding: var(--space-3xs);
-}
-
-button:not(.plain) {
-	cursor: pointer;
-}
-
-button[data-color='yellow'] {
-	background-color: var(--yellow);
-	color: var(--black);
-	/* font-weight: var(--font-medium); */
-	/* transition: scale 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-	transition: scale 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-button[data-color='yellow']:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-}
-button:is(:hover, :focus-visible):not(:disabled):not(.plain) {
-	scale: 1.05;
-}
-button:active:not(:disabled):not(.plain) {
-	scale: 0.95;
-	transition: scale 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 a {
@@ -45,7 +20,6 @@ a {
 	border-radius: var(--space-3xs); /* For the focus outline */
 }
 a:hover {
-	--highlight-color: var(--yellow);
-	color: var(--highlight-color);
+	color: var(--highlight-color, var(--yellow));
 	text-decoration: none;
 }

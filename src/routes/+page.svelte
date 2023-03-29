@@ -63,7 +63,7 @@
 				programming all over again! I would build games and play them at lunch with my friends, and
 				I was able to use my coding skills to help with other projects in school.
 			</p>
-			<p>Though reluctant at first, I grew to love web development!</p>
+			<!-- <p>Though reluctant at first, I grew to love web development!</p> -->
 		</div>
 
 		<div class="boxes" bind:this={boxes}>

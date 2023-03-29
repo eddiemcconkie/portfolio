@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import pic from './pic-500x500.jpg';
 	import PuzzleDialog from './PuzzleDialog.svelte';
+	import Button from '$lib/Button.svelte';
 
 	let mounted = false;
 	onMount(() => {
@@ -29,12 +30,22 @@
 				<!-- <div class="img-container | stack"> -->
 				<img src={pic} alt="Eddie McConkie" width="300" draggable="false" />
 				{#if mounted}
-					<button
+					<!-- <button
 						class="step-1"
 						data-color="yellow"
 						on:click={showGame}
 						in:scale={{ delay: 300, duration: 800, easing }}>click!</button
-					>
+					> -->
+					<div class="button-container">
+						<Button
+							border
+							class="step-1 font-bold"
+							on:click={showGame}
+							--border-radius="var(--space-xs)"
+						>
+							click!
+						</Button>
+					</div>
 					<span class="prompt" in:fly={{ delay: 300, duration: 800, y: -50, easing }}>
 						up for a challenge ?
 					</span>
@@ -99,7 +110,8 @@
 		flex: 1000 0 0;
 	}
 	h1 {
-		text-shadow: 0 var(--space-3xs-2xs) var(--black);
+		/* text-shadow: 0 var(--space-3xs-2xs) var(--black); */
+		text-shadow: 0 0.1em var(--black);
 	}
 	.img-container {
 		--img-br: var(--space-m);
@@ -119,19 +131,20 @@
 		outline-offset: var(--space-xs);
 	}
 	img {
+		background: var(--black);
 		border: var(--space-2xs) solid var(--black);
 		border-radius: var(--img-br);
 		width: 100%;
 		aspect-ratio: 1 / 1;
 	}
-	.img-container > button {
+	.img-container > .button-container {
 		justify-self: center;
 		align-self: end;
 		margin-block-end: var(--space-s);
-		border: var(--space-3xs) solid var(--black);
+		/* border: var(--space-3xs) solid var(--black); */
 		font-weight: var(--font-bold);
-		padding-inline: var(--space-xl);
-		padding-block-start: var(--space-3xs);
+		/* padding-inline: var(--space-xl); */
+		/* padding-block-start: var(--space-3xs); */
 	}
 	.img-container > .prompt {
 		justify-self: center;

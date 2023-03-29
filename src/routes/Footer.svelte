@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
-	import Spinner from '../assets/icons/Spinner.svelte';
-	import GitHub from '../assets/icons/GitHub.svelte';
-	import Linkedin from '../assets/icons/Linkedin.svelte';
+	import Spinner from '$lib/icons/Spinner.svelte';
+	import GitHub from '$lib/icons/GitHub.svelte';
+	import Linkedin from '$lib/icons/Linkedin.svelte';
+	import Button from '$lib/Button.svelte';
 
 	let sendingEmail = false;
 </script>
@@ -26,6 +27,7 @@
 					<span class="step--1 font-bold">name <span class="required">*</span></span>
 					<input type="text" id="name" name="name" required value={$page.form?.name ?? ''} />
 				</label>
+
 				<label for="email">
 					<span class="step--1 font-bold">
 						email <span class="required">*</span>
@@ -35,23 +37,34 @@
 					</span>
 					<input type="email" id="email" name="email" required value={$page.form?.email ?? ''} />
 				</label>
+
 				<label for="message">
 					<span class="step--1 font-bold">write something, if you like</span>
 					<textarea name="message" id="message" value={$page.form?.message ?? ''} />
 				</label>
-				<button type="submit" class="font-medium" data-color="yellow" disabled={sendingEmail}>
-					{#if sendingEmail}
-						sending
-						<Spinner />
-					{:else}
-						send it
+
+				<div class="submit-button">
+					<Button
+						type="submit"
+						disabled={sendingEmail}
+						size="full"
+						--border-radius="var(--space-2xs)"
+					>
+						{#if sendingEmail}
+							sending
+							<Spinner />
+						{:else}
+							send it
+						{/if}
+					</Button>
+				</div>
+				<p class="submit-message">
+					{#if $page.form?.success}
+						<p>thanks! I'll get back to you soon</p>
+					{:else if $page.form?.rejected}
+						<p>sorry, something went wrong...</p>
 					{/if}
-				</button>
-				{#if $page.form?.success}
-					<p>thanks! I'll get back to you soon</p>
-				{:else if $page.form?.rejected}
-					<p>sorry, something went wrong...</p>
-				{/if}
+				</p>
 			</form>
 			<div class="social-links">
 				<a
@@ -59,7 +72,7 @@
 					aria-label="GitHub repos"
 					target="_blank"
 					rel="noreferrer"
-					class="font-white step-4"
+					class="font-white step-3"
 				>
 					<GitHub />
 				</a>
@@ -68,7 +81,7 @@
 					aria-label="Linkedin profile"
 					target="_blank"
 					rel="noreferrer"
-					class="font-white step-4"
+					class="font-white step-3"
 				>
 					<Linkedin />
 				</a>
@@ -106,8 +119,10 @@
 	.social-links {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		/* justify-content: center; */
+		justify-content: flex-end;
 		gap: var(--space-xs);
+		margin-block-start: var(--space-m);
 	}
 	.social-links > a {
 		display: flex;
@@ -140,6 +155,7 @@
 		}
 		.social-links {
 			flex-direction: column;
+			justify-content: flex-start;
 		}
 		.footer-main-content {
 			flex-direction: row;
@@ -151,8 +167,11 @@
 		textarea {
 			height: 100%;
 		}
-		button[type='submit'] {
+		.submit-button {
 			align-self: end;
+		}
+		.submit-message {
+			grid-column: 1 / -1;
 		}
 	}
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/Button.svelte';
 	import Footer from '../Footer.svelte';
 	import ProjectLink from '../ProjectLink.svelte';
 
@@ -10,30 +11,47 @@
 </svelte:head>
 
 <header class="header-bar | font-white">
-	<h1 class="step-1">EDDIE McCONKIE</h1>
+	<!-- <h1 class="step-1">EDDIE McCONKIE</h1> -->
+	<a href="/" class="step-1 font-medium">EDDIE McCONKIE</a>
 </header>
 <section class="header-main | flow | font-white flex column align-center" aria-labelledby="intro">
-	<h2 id="intro" class="container | step-3">{data.project.title}</h2>
+	<h1 id="intro" class="container | step-3 font-bold">{data.project.title}</h1>
 	<p class="container | step-1">
 		{data.project.headerText}
 	</p>
 </section>
 
-<div class="container flow">
+<!-- <Button>hey</Button> -->
+<!-- <Button href="/urmom">hey</Button> -->
+
+<div class="flow">
 	{#if data.project.screenshot}
-		<div class="stack">
+		<div class="screenshot | container stack">
 			<img src={data.project.screenshot} alt="" />
-			<button class="demo-button | step-1 font-bold" data-color="yellow">try it out!</button>
+			<!-- <button class="demo-button | step-1 font-bold" data-color="yellow">try it out!</button> -->
+			<div class="demo-button">
+				<Button
+					border
+					class="step-1 font-bold"
+					href="https://code-journal.vercel.app"
+					external
+					--padding-inline="var(--space-l-xl)"
+				>
+					try it out!
+				</Button>
+			</div>
 		</div>
 	{/if}
 	{#if data.project.githubLink}
-		<a href={data.project.githubLink} target="_blank" rel="noreferrer">
-			check out the code on GitHub
-		</a>
+		<p class="flex justify-center">
+			<a href={data.project.githubLink} target="_blank" rel="noreferrer">
+				check out the code on GitHub
+			</a>
+		</p>
 	{/if}
 
 	{#each data.project.bodyText as paragraph}
-		<p>{paragraph}</p>
+		<p class="container" data-width="thin">{paragraph}</p>
 	{/each}
 
 	{#if data.otherProjects.length > 0}
@@ -63,13 +81,17 @@
 	}
 	.header-bar {
 		background-color: var(--green);
-		padding: var(--space-3xs) var(--space-m);
+		padding: var(--space-3xs) var(--space-s-l);
 		position: sticky;
 		top: 0;
 		z-index: 1;
+		box-shadow: 0 0 3px var(--black);
 	}
-	h1 {
-		text-shadow: 0 calc(var(--space-3xs) / 2) var(--black);
+	header > a {
+		text-decoration: none;
+		color: white;
+		text-shadow: 0 0.1em var(--black);
+		line-height: 1;
 	}
 	.header-main {
 		--clip-inset: 8vw;
@@ -87,15 +109,30 @@
 	.header-main > p {
 		margin-block-end: var(--space-l);
 	}
+
+	.screenshot {
+		margin-block-start: var(--space-xl);
+		aspect-ratio: 5 / 3;
+	}
+	.screenshot > img {
+		border: var(--space-3xs) solid var(--black);
+		border-radius: var(--space-s);
+		background: var(--black);
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+
 	.demo-button {
 		align-self: end;
 		justify-self: end;
 		margin-block-end: var(--space-s);
-		margin-inline-end: var(--space-m-l);
-		border: var(--space-3xs) solid var(--black);
-		font-weight: var(--font-bold);
-		padding-inline: var(--space-xl);
-		padding-block-start: var(--space-3xs);
+		margin-inline: var(--space-s);
+		/* border: var(--space-3xs) solid var(--black); */
+		/* font-weight: var(--font-bold); */
+		/* padding-inline: var(--space-xl); */
+		/* padding-block-start: var(--space-3xs); */
 	}
 
 	section[aria-labelledby='projects'] {

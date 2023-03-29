@@ -4,6 +4,8 @@
 	import SliderPuzzle from './SliderPuzzle.svelte';
 
 	import pic from './pic-500x500.jpg';
+	import Close from '$lib/icons/Close.svelte';
+	import Button from '$lib/Button.svelte';
 
 	let dialog: HTMLDialogElement;
 
@@ -27,7 +29,9 @@
 	{#if open}
 		<div transition:fly={{ duration: 400, y: 200, easing: quintOut, opacity: 0.5 }}>
 			<div class="flex justify-end">
-				<button on:click={() => dialog.close()}>X</button>
+				<Button size="compact" class="step-0 font-bold" on:click={() => dialog.close()}>
+					<Close />
+				</Button>
 			</div>
 			<div class="puzzle-wrapper | flex justify-center">
 				<SliderPuzzle {pic} />
