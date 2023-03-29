@@ -18,11 +18,9 @@
 
 	let mounted = false;
 
-	onMount(async () => {
-		setTimeout(() => {
-			calculateBoxesDistanceFromCenter();
-			mounted = true;
-		}, 1);
+	onMount(() => {
+		calculateBoxesDistanceFromCenter();
+		mounted = true;
 	});
 </script>
 
