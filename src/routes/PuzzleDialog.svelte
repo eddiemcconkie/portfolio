@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { fly, slide } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { confetti } from '@neoconfetti/svelte';
 
 	import SliderPuzzle from './SliderPuzzle.svelte';
-	import pic from './pic-500x500.jpg';
+	import pic from './pic-400x400.webp';
 	import Close from '$lib/icons/Close.svelte';
 	import Button from '$lib/Button.svelte';
 

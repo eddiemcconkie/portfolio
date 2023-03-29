@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { quintOut } from 'svelte/easing';
-	import { fly, scale } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import pic from './pic-500x500.jpg';
+	import pic from './pic-400x400.webp';
 	import PuzzleDialog from './PuzzleDialog.svelte';
 	import Button from '$lib/Button.svelte';
 
@@ -27,15 +27,8 @@
 				<p class="font-bold step-1">software engineer</p>
 			</div>
 			<div class="img-container | stack">
-				<!-- <div class="img-container | stack"> -->
 				<img src={pic} alt="Eddie McConkie" width="300" draggable="false" />
 				{#if mounted}
-					<!-- <button
-						class="step-1"
-						data-color="yellow"
-						on:click={showGame}
-						in:scale={{ delay: 300, duration: 800, easing }}>click!</button
-					> -->
 					<div class="button-container">
 						<Button
 							border
@@ -95,8 +88,7 @@
 		background-size: cover;
 		background-blend-mode: multiply;
 		background-color: var(--green);
-		background-image: url('../assets/header-texture-autox300.jpg');
-		/* background-image: url('../assets/header-texture.jpg'); */
+		background-image: url('../assets/header-texture.webp');
 		filter: blur(8px);
 		scale: 1.1; /* So edges aren't blurry */
 		z-index: -1;
@@ -110,7 +102,6 @@
 		flex: 1000 0 0;
 	}
 	h1 {
-		/* text-shadow: 0 var(--space-3xs-2xs) var(--black); */
 		text-shadow: 0 0.1em var(--black);
 	}
 	.img-container {
