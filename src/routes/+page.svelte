@@ -1,7 +1,6 @@
 <script lang="ts">
 	import MediaQuery from '$lib/MediaQuery.svelte';
 	import { Canvas } from '@threlte/core';
-	import { onMount } from 'svelte';
 	import Boxes from './Boxes.svelte';
 	import Footer from './Footer.svelte';
 	import Header from './Header.svelte';
@@ -13,13 +12,12 @@
 	let distanceFromCenter = 0;
 
 	const calculateBoxesDistanceFromCenter = () => {
+		if (!boxes) return;
 		const { top, bottom, height } = boxes.getBoundingClientRect();
 		distanceFromCenter = ((top + bottom) / 2 - innerHeight / 2) / height;
 	};
 
-	onMount(() => {
-		calculateBoxesDistanceFromCenter();
-	});
+	$: if (boxes) calculateBoxesDistanceFromCenter();
 </script>
 
 <svelte:head>
