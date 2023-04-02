@@ -5,6 +5,7 @@
 	import GitHub from '$lib/icons/GitHub.svelte';
 	import Linkedin from '$lib/icons/Linkedin.svelte';
 	import Spinner from '$lib/icons/Spinner.svelte';
+	import { css } from '../styles/vars';
 
 	let sendingEmail = false;
 </script>
@@ -44,12 +45,7 @@
 				</label>
 
 				<div class="submit-button">
-					<Button
-						type="submit"
-						disabled={sendingEmail}
-						size="full"
-						--border-radius="var(--space-2xs)"
-					>
+					<Button type="submit" disabled={sendingEmail} size="full" --border-radius={css.space_2xs}>
 						{#if sendingEmail}
 							sending
 							<Spinner />

@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
+	import { css } from '../styles/vars';
 	import pic from './pic-400x400.webp';
 	import PuzzleDialog from './PuzzleDialog.svelte';
 
@@ -34,7 +35,7 @@
 							border
 							class="step-1 font-bold"
 							on:click={showGame}
-							--border-radius="var(--space-xs)"
+							--border-radius={css.space_xs}
 						>
 							click!
 						</Button>
@@ -51,8 +52,8 @@
 			<div class="font-white font-normal step-0">
 				<p class="font-medium step-1">Hey, I'm Eddie!</p>
 				<p>
-					I'm a full-stack software engineer, and I love building apps, especially when they can
-					help boost productivity! Keep scrolling and check out some of the stuff I've worked on!
+					I'm a full-stack software engineer. I love web development and building apps! Keep
+					scrolling and check out some of the stuff I've worked on!
 				</p>
 			</div>
 		</div>

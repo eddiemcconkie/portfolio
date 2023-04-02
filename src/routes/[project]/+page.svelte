@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/Button.svelte';
+	import Home from '$lib/icons/Home.svelte';
+	import { css } from '../../styles/vars';
 	import Footer from '../Footer.svelte';
 	import ProjectLink from '../ProjectLink.svelte';
 
@@ -10,8 +12,10 @@
 	<title>{data.project.title} | Eddie McConkie - Portfolio</title>
 </svelte:head>
 
-<header class="header-bar | font-white">
-	<a href="/" class="step-1 font-medium">EDDIE McCONKIE</a>
+<header class="header-bar | font-white flex">
+	<a href="/" class="step-1 font-medium flex align-center gap-3xs" aria-label="Home page">
+		<span class="home-icon"><Home /></span> EDDIE McCONKIE
+	</a>
 </header>
 <section class="header-main | flow | font-white flex column align-center" aria-labelledby="intro">
 	<h1 id="intro" class="container | step-3 font-bold">{data.project.title}</h1>
@@ -30,8 +34,8 @@
 					class="step-1 font-bold"
 					href="https://code-journal.vercel.app"
 					external
-					--border-radius="var(--space-xs)"
-					--padding-inline="var(--space-l-xl)"
+					--border-radius={css.space_xs}
+					--padding-inline={css.space_l_xl}
 				>
 					try it out!
 				</Button>
@@ -88,6 +92,10 @@
 		color: white;
 		text-shadow: 0 0.1em var(--black);
 		line-height: 1;
+	}
+	.home-icon {
+		/* filter: drop-shadow(0 0.075em var(--black)); */
+		filter: drop-shadow(0 0.09em var(--black));
 	}
 	.header-main {
 		--clip-inset: 8vw;

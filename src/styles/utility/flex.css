@@ -19,10 +19,16 @@
 .flex.align-end {
 	align-items: flex-end;
 }
+.flex.align-baseline {
+	align-items: baseline;
+}
 .flex.space-between {
 	justify-content: space-between;
 }
 
+.flex.gap-3xs {
+	gap: var(--space-3xs);
+}
 .flex.gap-3xl {
 	gap: var(--space-3xl);
 }
