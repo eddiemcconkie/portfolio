@@ -25,7 +25,7 @@ export const projects: Record<string, Project> = {
 		],
 	},
 	'snip-swap': {
-		title: 'Snip Swap',
+		title: 'SnipSwap',
 		headerText: 'An app for finding and sharing your favorite code snippets',
 		screenshot: '',
 		githubLink: '',

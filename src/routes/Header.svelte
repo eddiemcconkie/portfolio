@@ -41,7 +41,7 @@
 						</Button>
 					</div>
 					<span class="prompt" in:fly={{ delay: 300, duration: 800, y: -50, easing }}>
-						up for a challenge ?
+						up for a challenge?
 					</span>
 				{/if}
 			</div>
